@@ -98,7 +98,7 @@ nav {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #F8F8F8;
 }
 
 
@@ -161,7 +161,7 @@ input[type="number"] {
     font-size: 1.2rem;
     border-radius: 0.5rem;
     border: 1px solid #ccc;
-    width: 100%;
+    width: 30%;
     margin-bottom: 1rem;
 }
 
@@ -255,3 +255,8 @@ button {
 .sell-orders {
     max-width: 30%;
 }
+
+.text-red {
+    color: #ff0000;
+}
+

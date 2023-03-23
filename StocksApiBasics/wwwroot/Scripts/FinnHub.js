@@ -23,7 +23,6 @@ function connectWebSocket() {
             const stockPrice = message.data[0].p;
             stockPriceElem.innerText = stockPrice;
             document.getElementById("updated").value = stockPrice;
-            console.log(document.getElementById("Price"));
         }
     };
 }

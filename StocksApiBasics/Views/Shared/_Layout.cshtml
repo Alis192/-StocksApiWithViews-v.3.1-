@@ -14,9 +14,9 @@
             <div class="nav-left">
                 <div class="logo"><i class="fa-solid fa-money-bill-trend-up"></i> StocksApp</div>
                 <ul class="menu">
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/orders">Order List</a></li>
-                </ul>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="Orders">Order List</a></li>
+                </ul> 
             </div>
             <div class="nav-right">
                 <form class="search-form">
@@ -31,5 +31,8 @@
     <div class="page-content">
         @RenderBody()
     </div>
+
+    @RenderSection("scripts", required: false) @*reuqired: false means that these scripts are optional, in case some views doesn't require them then it will be ok'*@
+
 </body>
 </html>

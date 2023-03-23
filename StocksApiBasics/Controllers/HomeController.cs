@@ -69,7 +69,7 @@ namespace StocksApiBasics.Controllers
 
             _stocksService.CreateBuyOrder(order);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Orders));
         }
 
         [HttpPost]
@@ -84,7 +84,7 @@ namespace StocksApiBasics.Controllers
 
             _stocksService.CreateSellOrder(order);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Orders));
         }
 
 
