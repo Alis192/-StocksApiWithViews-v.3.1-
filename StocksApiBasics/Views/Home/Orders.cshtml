@@ -5,9 +5,10 @@
 }
 
 <div class="parent-container">
+    <a asp-action="OrdersPDF" asp-controller="Home">Download as PDF</a>
     <div class="child-container">
         <div class="buy-orders">
-            <h2>Buy Orders</h2>
+            <h2 class="title-orders">Buy Orders</h2>
 
             <div class="order-container">
                 @foreach (var order in Model.BuyOrders)
@@ -26,9 +27,13 @@
                         </div>
                         <hr>
                         <div class="order-field">
-                            <span class="field-label">Total Trade Amount:</span>
-                            <span class="field-value">$@order.TradeAmount</span>
+                            <span class="field-label medium">Total Trade Amount:</span>
+                            <span class="price-value"><b>$@order.TradeAmount</b></span>
                         </div>
+                        <div class="order-field">
+                            <span class="field-label-date">@order.DateAndTimeOfOrder</span>
+                        </div>
+
                     </div>
                 }
 
@@ -36,7 +41,7 @@
         </div>
 
         <div class="sell-orders">
-            <h2>Sell Orders</h2>
+            <h2 class="title-orders">Sell Orders</h2>
             <div class="order-container">
 
                 @foreach (var order in Model.SellOrders)
@@ -57,8 +62,11 @@
                         </div>
                         <hr>
                         <div class="order-field">
-                            <span class="field-label">Total Trade Amount:</span>
-                            <span class="field-value">$@order.TradeAmount</span>
+                            <span class="field-label medium">Total Trade Amount:</span>
+                            <span class="price-value"><b>$@order.TradeAmount</b></span>
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label-date">@order.DateAndTimeOfOrder</span>
                         </div>
                     </div>
                 }

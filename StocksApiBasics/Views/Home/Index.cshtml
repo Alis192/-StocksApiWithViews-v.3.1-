@@ -23,7 +23,7 @@
                     <label asp-for="Quantity">Quantity:</label>
                     <input type="number" asp-for="Quantity" value="@Model.Quantity">
                     <button type="submit" class="buy-button">Buy</button>
-                    <button formaction="/sellorder" type="submit" class="sell-button">Sell</button>
+                    <button asp-action="Sellorder" type="submit" class="sell-button">Sell</button>
                     <input type="hidden" name="StockSymbol" value="@Model.StockSymbol" />
                     <input type="hidden" name="StockName" value="@Model.StockName" />
                     <input id="updated" class="stock-price" type="hidden" name="Price" value="@Model.Price" />

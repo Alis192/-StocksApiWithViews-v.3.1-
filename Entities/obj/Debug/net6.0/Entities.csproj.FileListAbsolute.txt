@@ -10,3 +10,5 @@ C:\Users\alido\source\ASP\StocksApiBasics\Entities\obj\Debug\net6.0\Entities.dll
 C:\Users\alido\source\ASP\StocksApiBasics\Entities\obj\Debug\net6.0\refint\Entities.dll
 C:\Users\alido\source\ASP\StocksApiBasics\Entities\obj\Debug\net6.0\Entities.pdb
 C:\Users\alido\source\ASP\StocksApiBasics\Entities\obj\Debug\net6.0\ref\Entities.dll
+C:\Users\alido\source\ASP\StocksApiBasics\Entities\bin\Debug\net6.0\Entities.runtimeconfig.json
+C:\Users\alido\source\ASP\StocksApiBasics\Entities\obj\Debug\net6.0\Entities.genruntimeconfig.cache

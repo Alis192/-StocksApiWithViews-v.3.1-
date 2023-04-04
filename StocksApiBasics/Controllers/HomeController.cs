@@ -6,9 +6,11 @@ using StocksApiBasics.Models;
 using System.Text.Json;
 using System.Globalization;
 using ServiceContracts.DTO;
+using Rotativa.AspNetCore;
 
 namespace StocksApiBasics.Controllers
 {
+    [Route("[controller]")]
     public class HomeController : Controller
     {
         private readonly IFinnhubService _finnhubService;
@@ -16,6 +18,7 @@ namespace StocksApiBasics.Controllers
         private readonly IConfiguration _config;
         private readonly IStocksService _stocksService;
 
+        
         public HomeController(IFinnhubService finnhubService, IOptions<StocksApiOptions> stocksApiOptions, IConfiguration configuration, IStocksService stocksService) //so 'stocksApiOptions' parameter get an object if IOptions
         {
             _finnhubService = finnhubService;
@@ -29,7 +32,7 @@ namespace StocksApiBasics.Controllers
 
 
         [Route("/")]
-        [Route("/home")]
+        [Route("/Home")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -58,7 +61,7 @@ namespace StocksApiBasics.Controllers
         }
 
         [HttpPost]
-        [Route("buyorder")]
+        [Route("Buyorder")]
         public IActionResult BuyOrder(BuyOrderRequest order)
         {
             if(!ModelState.IsValid)
@@ -73,7 +76,7 @@ namespace StocksApiBasics.Controllers
         }
 
         [HttpPost]
-        [Route("sellorder")]
+        [Route("Sellorder")]
         public IActionResult SellOrder(SellOrderRequest order)
         {
             if (!ModelState.IsValid)
@@ -91,7 +94,7 @@ namespace StocksApiBasics.Controllers
 
 
         [HttpGet]
-        [Route("orders")]
+        [Route("Orders")]
         public IActionResult Orders()
         {
             List<BuyOrderResponse> orders_from_list_buy = _stocksService.GetBuyOrders();
@@ -105,5 +108,30 @@ namespace StocksApiBasics.Controllers
             
             return View(orders);
         }
+
+
+        [Route("OrdersPDF")]
+        public IActionResult OrdersPDF()
+        {
+            List<BuyOrderResponse> buyOrders = _stocksService.GetBuyOrders();
+            List<SellOrderResponse> sellOrders = _stocksService.GetSellOrders();
+
+            Orders order = new Orders();
+            order.BuyOrders = buyOrders;
+            order.SellOrders = sellOrders;
+
+            return new ViewAsPdf("OrdersPDF", order, ViewData)
+            {
+                PageMargins = new Rotativa.AspNetCore.Options.Margins()
+                {
+                    Top = 20,
+                    Right = 20,
+                    Bottom = 20,
+                    Left = 20,
+                },
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
+            };
+        }
+
     }
 }

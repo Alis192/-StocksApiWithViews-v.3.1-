@@ -1,0 +1,45 @@
+﻿@model Orders
+
+@{
+    Layout = null;
+}
+@*PDF FILE VIEW*@
+
+<link rel="stylesheet" href="@("http://" + Context.Request.Host.ToString() + "/SecondStyle.css")" />
+
+<table class="table w-100 mt">
+    <thead>
+        <tr>
+            <th>Date And Time</th>
+            <th>Stock</th>
+            <th>Order Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Trade Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.BuyOrders)
+        {
+            <tr>
+                <td>@order.DateAndTimeOfOrder</td>
+                <td>@order.StockName @order.StockSymbol</td>
+                <td>BuyOrder</td>
+                <td>@order.Quantity</td>
+                <td>$@order.Price</td>
+                <td>$@order.TradeAmount</td>
+            </tr>
+        }
+        @foreach (var order in Model.SellOrders)
+        {
+            <tr>
+                <td>@order.DateAndTimeOfOrder</td>
+                <td>@order.StockName @order.StockSymbol</td>
+                <td>SellOrder</td>
+                <td>@order.Quantity</td>
+                <td>$@order.Price</td>
+                <td>$@order.TradeAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>

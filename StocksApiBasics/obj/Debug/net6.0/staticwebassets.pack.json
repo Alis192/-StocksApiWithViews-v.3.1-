@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\StocksApiBasics\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
       "Id": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\StocksApiBasics\\wwwroot\\Scripts\\FinnHub.js",
       "PackagePath": "staticwebassets\\Scripts\\FinnHub.js"
     },

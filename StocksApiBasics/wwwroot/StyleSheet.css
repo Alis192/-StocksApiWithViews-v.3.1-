@@ -188,7 +188,7 @@ button {
 .parent-container {
     width: 100%;
     background-color: #F8F8F8;
-    padding: 20px;
+    padding: 30px;
 }
 
 .order-container {
@@ -198,7 +198,7 @@ button {
 }
 
 .order-box {
-    width: 50vh;
+    width: 90%;
     margin-bottom: 20px;
     background-color: #FFF;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -207,9 +207,11 @@ button {
 }
 
 .order-title {
+    display: flex;
+    justify-content: center;
     font-size: 18px;
     font-weight: bold;
-    color: #3B3B3B;
+    color: #3847d8;
     margin-bottom: 10px;
 }
 
@@ -225,9 +227,20 @@ button {
     color: #3B3B3B;
 }
 
+.field-label-date {
+    font-size: 13px;
+    font-weight: bold;
+    color: #8e84c9;
+}
+
 .field-value {
     font-size: 16px;
     color: #696969;
+}
+
+.price-value {
+    font-size: 22px;
+    color: green;
 }
 
 .order-box hr {
@@ -246,17 +259,34 @@ button {
 .child-container {
     display: flex;
     justify-content: space-between;
+    margin-top:20px;
 }
 
 .buy-orders {
-    max-width: 30%;
+    max-width: 45%;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background: white;
 }
 
 .sell-orders {
-    max-width: 30%;
+    max-width: 45%;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background: white;
 }
 
 .text-red {
     color: #ff0000;
+}
+
+.title-orders {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.medium {
+    font-size: 18px;
 }
 
