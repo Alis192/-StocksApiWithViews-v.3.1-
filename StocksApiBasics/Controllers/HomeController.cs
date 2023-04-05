@@ -62,7 +62,7 @@ namespace StocksApiBasics.Controllers
 
         [HttpPost]
         [Route("Buyorder")]
-        public IActionResult BuyOrder(BuyOrderRequest order)
+        public async Task<IActionResult> BuyOrder(BuyOrderRequest order)
         {
             if(!ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace StocksApiBasics.Controllers
 
         [HttpPost]
         [Route("Sellorder")]
-        public IActionResult SellOrder(SellOrderRequest order)
+        public async Task<IActionResult> SellOrder(SellOrderRequest order)
         {
             if (!ModelState.IsValid)
             {
@@ -95,11 +95,11 @@ namespace StocksApiBasics.Controllers
 
         [HttpGet]
         [Route("Orders")]
-        public IActionResult Orders()
+        public async Task<IActionResult> Orders()
         {
-            List<BuyOrderResponse> orders_from_list_buy = _stocksService.GetBuyOrders();
+            List<BuyOrderResponse> orders_from_list_buy = await _stocksService.GetBuyOrders();
 
-            List<SellOrderResponse> order_from_list_sell = _stocksService.GetSellOrders();
+            List<SellOrderResponse> order_from_list_sell = await _stocksService.GetSellOrders();
             
             Orders orders = new Orders();
             
@@ -111,10 +111,10 @@ namespace StocksApiBasics.Controllers
 
 
         [Route("OrdersPDF")]
-        public IActionResult OrdersPDF()
+        public async Task<IActionResult> OrdersPDF()
         {
-            List<BuyOrderResponse> buyOrders = _stocksService.GetBuyOrders();
-            List<SellOrderResponse> sellOrders = _stocksService.GetSellOrders();
+            List<BuyOrderResponse> buyOrders = await _stocksService.GetBuyOrders();
+            List<SellOrderResponse> sellOrders = await _stocksService.GetSellOrders();
 
             Orders order = new Orders();
             order.BuyOrders = buyOrders;

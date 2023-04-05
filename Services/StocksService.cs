@@ -7,6 +7,7 @@ using Entities;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using Services.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services
 {
@@ -23,7 +24,7 @@ namespace Services
             _db = ordersDbContext;
         }
 
-        public BuyOrderResponse CreateBuyOrder(BuyOrderRequest? request)
+        public async Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? request)
         {
             if (request == null) throw new ArgumentNullException();
 
@@ -37,14 +38,14 @@ namespace Services
             buy_order.DateAndTimeOfOrder= DateTime.Now;
 
             _db.BuyOrders.Add(buy_order);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             //BuyOrderResponse order_response = buy_order.ToBuyOrderResponse();
             
             return buy_order.ToBuyOrderResponse();
         }
 
-        public SellOrderResponse CreateSellOrder(SellOrderRequest? request)  
+        public async Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? request)  
         {
             if (request == null) { throw new ArgumentNullException(); }
 
@@ -57,7 +58,7 @@ namespace Services
             order_from_request.DateAndTimeOfOrder = DateTime.Now;
 
             _db.SellOrders.Add(order_from_request);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             //SellOrderResponse sell_order_response = order_from_request.ToSellOrderResponse();
 
@@ -65,27 +66,16 @@ namespace Services
 
         }
 
-        public List<BuyOrderResponse> GetBuyOrders()
+        public async Task<List<BuyOrderResponse>> GetBuyOrders()
         {
-            //List<BuyOrderResponse> buy_order_list = new List<BuyOrderResponse>();
-            //foreach (BuyOrder order in _orders)
-            //{
-            //    buy_order_list.Add(order.ToBuyOrderResponse());
-            //}
-            //return buy_order_list;
-
-            return _db.BuyOrders.ToList().Select(buyorder => buyorder.ToBuyOrderResponse()).ToList();
+            var buyOrders = await _db.BuyOrders.ToListAsync();
+            return buyOrders.Select(buyorder => buyorder.ToBuyOrderResponse()).ToList();
         }
 
-        public List<SellOrderResponse> GetSellOrders()
+        public async Task<List<SellOrderResponse>> GetSellOrders()
         {
-            //List<SellOrderResponse> sell_order_list = new List<SellOrderResponse>();
-            //foreach (SellOrder order in _sellOrders)
-            //{
-            //    sell_order_list.Add(order.ToSellOrderResponse());
-            //}
-            //return sell_order_list;
-            return _db.SellOrders.ToList().Select(sellorder => sellorder.ToSellOrderResponse()).ToList();
+            var sellOrders = await _db.SellOrders.ToListAsync();
+            return sellOrders.Select(sellorder => sellorder.ToSellOrderResponse()).ToList();
 
         }
     }
