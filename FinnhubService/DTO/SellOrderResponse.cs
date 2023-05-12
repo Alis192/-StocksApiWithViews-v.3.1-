@@ -37,9 +37,7 @@ namespace ServiceContracts.DTO
     {
         public static SellOrderResponse ToSellOrderResponse(this SellOrder order)
         {
-            double? tradeAmount = (double?)Math.Round((decimal)(order.Price * order.Quantity), 2);
-
-
+            double tradeAmount = (double)Math.Round((decimal)(order.Price * order.Quantity), 2);
             return new SellOrderResponse
             {
                 SellOrderID = order.SellOrderID,

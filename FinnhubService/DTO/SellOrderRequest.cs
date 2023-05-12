@@ -15,7 +15,7 @@ namespace ServiceContracts.DTO
         public string? StockName { get; set; }
 
 
-        [MinimumYearValidator("2000-01-01", ErrorMessage = "adasda")]
+        [MinimumYearValidator("2000-01-01", ErrorMessage = "Minimum year should be 2000-01-01")]
         public DateTime? DateAndTimeOfOrder { get; set; }
 
 

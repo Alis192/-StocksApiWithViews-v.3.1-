@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FinnhubService\ServiceContracts.csproj" />
+    <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
 
 </Project>

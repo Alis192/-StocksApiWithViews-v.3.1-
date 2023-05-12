@@ -1,0 +1,15 @@
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\bin\Debug\net6.0\RepositoryContracts.deps.json
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\bin\Debug\net6.0\RepositoryContracts.dll
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\bin\Debug\net6.0\RepositoryContracts.pdb
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\bin\Debug\net6.0\Entities.dll
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\bin\Debug\net6.0\Entities.pdb
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.csproj.AssemblyReference.cache
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.AssemblyInfoInputs.cache
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.AssemblyInfo.cs
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.csproj.CoreCompileInputs.cache
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.csproj.CopyComplete
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.dll
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\refint\RepositoryContracts.dll
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\RepositoryContracts.pdb
+C:\Users\alido\source\ASP\StocksApiBasics\IFinnhubRepository\obj\Debug\net6.0\ref\RepositoryContracts.dll

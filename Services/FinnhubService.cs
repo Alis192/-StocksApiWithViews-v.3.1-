@@ -9,62 +9,41 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 using System.Net;
-
+using Repositories;
+using RepositoryContracts;
 
 namespace Services
 {
     public class FinnhubService : IFinnhubService
     {
         private readonly IConfiguration _configuration;
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IFinnhubRepository _finnhubRepository;
 
-        public FinnhubService(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public FinnhubService(IConfiguration configuration, IFinnhubRepository finnhubRepository)
         {
             _configuration = configuration;
-            _httpClientFactory = httpClientFactory;
+            _finnhubRepository= finnhubRepository;
         }
 
 
         public async Task<Dictionary<string, object>?> GetCompanyProfile(string stockSymbol)
         {
 
-            //get api token from configuration which is in user secret
-            string? token = _configuration["userToken"]; // we want to get user token from user secret file inside StocksApiProject.
+            Dictionary<string, object> response = await _finnhubRepository.GetCompanyProfile(stockSymbol); //repository call
 
-            //we create a new HttpClient instance using the IHttpClientFactory
-            HttpClient httpClient = _httpClientFactory.CreateClient();
-
-            //building apiurl with 'stockSymbol' and 'token'
-            string apiUrl = $"https://finnhub.io/api/v1/stock/profile2?symbol={stockSymbol}&token={token}";
-
-            //we send an HTTP GET request to the API endpoint
-            HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
-
-            //we read the response body and store it into string
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            //we parse json data into a dictionary
-            Dictionary<string, object>? jsonCompany = JsonSerializer.Deserialize<Dictionary<string, object>>(responseBody);
-
-            return jsonCompany;
+            return response;
         }
 
         public async Task<Dictionary<string, object>?> GetStockPriceQuote(string stockSymbol)
         {
-            string? token = _configuration["userToken"];
+            Dictionary<string, object> response = await _finnhubRepository.GetStockPriceQuote(stockSymbol);
+            return response;
+        }
 
-            HttpClient httpClient = _httpClientFactory.CreateClient();
-
-            string apiUrl = $"https://finnhub.io/api/v1/quote?symbol={stockSymbol}&token={token}";
-
-            HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
-
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            Dictionary<string, object>? jsonPrice = JsonSerializer.Deserialize<Dictionary<string, object>>(responseBody);
-
-            return jsonPrice;
-
+        public async Task<List<Dictionary<string, string>>> GetStocks()
+        {
+            List<Dictionary<string, string>> allStocks = await _finnhubRepository.GetStocks();
+            return allStocks;
         }
     }
 }

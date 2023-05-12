@@ -797,6 +797,35 @@
           "bin/placeholder/Entities.dll": {}
         }
       },
+      "Repositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entities": "1.0.0",
+          "Microsoft.Extensions.Http": "7.0.0",
+          "RepositoryContracts": "1.0.0",
+          "ServiceContracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repositories.dll": {}
+        }
+      },
+      "RepositoryContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        }
+      },
       "ServiceContracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2085,6 +2114,16 @@
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
     },
+    "Repositories/1.0.0": {
+      "type": "project",
+      "path": "../Repositories/Repositories.csproj",
+      "msbuildProject": "../Repositories/Repositories.csproj"
+    },
+    "RepositoryContracts/1.0.0": {
+      "type": "project",
+      "path": "../IFinnhubRepository/RepositoryContracts.csproj",
+      "msbuildProject": "../IFinnhubRepository/RepositoryContracts.csproj"
+    },
     "ServiceContracts/1.0.0": {
       "type": "project",
       "path": "../FinnhubService/ServiceContracts.csproj",
@@ -2095,6 +2134,7 @@
     "net6.0": [
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "Microsoft.Extensions.Http >= 7.0.0",
+      "Repositories >= 1.0.0",
       "ServiceContracts >= 1.0.0"
     ]
   },
@@ -2127,6 +2167,9 @@
           "projectReferences": {
             "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\FinnhubService\\ServiceContracts.csproj": {
               "projectPath": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\FinnhubService\\ServiceContracts.csproj"
+            },
+            "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\Repositories\\Repositories.csproj": {
+              "projectPath": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\Repositories\\Repositories.csproj"
             }
           }
         }

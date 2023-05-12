@@ -29,12 +29,11 @@ namespace ServiceContracts.DTO
         }
     }
 
-
     public static class BuyOrderExtensions
     {
         public static BuyOrderResponse ToBuyOrderResponse(this BuyOrder order)
         {
-            double? tradeAmount = (double?)Math.Round((decimal)(order.Price * order.Quantity), 2);
+            double tradeAmount = (double)Math.Round((decimal)(order.Price * order.Quantity), 2);
             return new BuyOrderResponse
             {
                 BuyOrderID = order.BuyOrderID,

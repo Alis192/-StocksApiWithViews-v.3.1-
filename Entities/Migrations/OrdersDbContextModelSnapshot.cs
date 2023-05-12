@@ -45,7 +45,7 @@ namespace Entities.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("BuyOrderID");
+                    b.HasKey("BuyOrderID"); 
 
                     b.ToTable("BuyOrders", (string)null);
                 });

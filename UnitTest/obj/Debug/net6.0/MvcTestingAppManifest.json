@@ -1,0 +1,8 @@
+{
+  "Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\Entities",
+  "Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\Repositories",
+  "RepositoryContracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\IFinnhubRepository",
+  "ServiceContracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\FinnhubService",
+  "Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\Services",
+  "StocksApiBasics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\StocksApiBasics"
+}

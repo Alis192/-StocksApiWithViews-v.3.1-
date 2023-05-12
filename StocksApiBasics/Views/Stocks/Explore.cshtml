@@ -1,0 +1,32 @@
+﻿@model List<Stock>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="~/ExploreViewStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="box-parent-explore">
+        <div class="box-left">
+            @foreach (Stock stock in Model)
+            {
+                <div class="sub-box">
+                    <a asp-controller="Stocks" asp-action="Explore" asp-route-stockSymbol="@stock.StockSymbol">
+                        <div class="company-name-explore">@stock.StockName</div>
+                        <div class="company-info-explore">@stock.StockSymbol</div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="box-right">
+            @if (ViewBag.SingleStock != null) //when we select an item from list we invoke a view component and pass that object to partial view
+            {
+                <vc:grid stock="ViewBag.SingleStock"></vc:grid>
+            }
+        </div>
+    </div>
+</body>
+</html>

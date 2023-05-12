@@ -6,5 +6,6 @@
 
         Task<Dictionary<string, object>?>GetStockPriceQuote(string stockSymbol);
 
+        Task<List<Dictionary<string, string>>> GetStocks();
     }
 }
