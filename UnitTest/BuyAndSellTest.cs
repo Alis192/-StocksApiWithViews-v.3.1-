@@ -9,6 +9,8 @@ using AutoFixture;
 using FluentAssertions;
 using Moq;
 using RepositoryContracts;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace UnitTest
 {
@@ -23,12 +25,15 @@ namespace UnitTest
 
         public BuyAndSellTest(ITestOutputHelper testOutputHelper)
         {
+            var diagnosticConextMock = new Mock<IDiagnosticContext>();
+            var loggerMock = new Mock<ILogger<StocksService>>();
+
             _testOutputHelper = testOutputHelper;
             _fixture = new Fixture();
             _stocksRepositoryMock = new Mock<IStocksRepository>(); 
             _stocksRepository = _stocksRepositoryMock.Object; //we are creating fake repository object
 
-            _stocksService = new StocksService(_stocksRepository);
+            _stocksService = new StocksService(_stocksRepository, loggerMock.Object, diagnosticConextMock.Object);
         }
 
         #region CreateBuyOrder

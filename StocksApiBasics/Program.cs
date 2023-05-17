@@ -6,10 +6,17 @@ using Microsoft.EntityFrameworkCore;
 using Entities;
 using RepositoryContracts;
 using Repositories;
-
+using Serilog;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Serilog
+builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration) =>
+{
+    loggerConfiguration.ReadFrom.Configuration(context.Configuration) //Now Serilog can read our app's config files such as appsettings.json
+    .ReadFrom.Services(services); //service collections are available to serilog
+}); //with this code we have succesfully enabled serilog
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IStocksRepository, StocksRepository>();
@@ -39,10 +46,15 @@ builder.Services.AddDbContext<OrdersDbContext>(options =>
 
 var app = builder.Build();
 
+app.UseSerilogRequestLogging(); //it adds an extra log message as soon as the request response is completed 
+
+
 if (builder.Environment.IsEnvironment("Test") == false)
 {
     Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa"); //set up rotativa package
 }
+
+app.UseHttpLogging();
 
 app.UseStaticFiles();
 app.UseRouting();

@@ -15,18 +15,24 @@ namespace StocksApiBasics.Controllers
         private readonly IFinnhubService _finnhubService;
         private readonly IConfiguration _configuration;
         private readonly IMemoryCache _cache;
+        private readonly ILogger _logger;
 
-        public StocksController(IFinnhubService finnhubService, IConfiguration configuration, IMemoryCache cache)
+        public StocksController(IFinnhubService finnhubService, IConfiguration configuration, IMemoryCache cache, ILogger logger)
         {
             _configuration = configuration;
             _finnhubService = finnhubService;
             _cache = cache;
+            _logger = logger;
         }
 
         [Route("explore")]
         [Route("explore/{stockSymbol}")]
         public async Task<IActionResult> Explore(string? stockSymbol)
         {
+            _logger.LogInformation("Explore of StocksController");
+
+
+
             // Get the list of top stocks from configuration
             var topStocksConfig = _configuration["TradingOptions:Top25PopularStocks"];
             var topStocks = topStocksConfig.Split(',').Select(s => s.Trim()).ToList();

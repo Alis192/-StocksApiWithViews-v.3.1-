@@ -8,20 +8,23 @@ using ServiceContracts;
 using ServiceContracts.DTO;
 using Services.Helpers;
 using RepositoryContracts;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Serilog;
+using SerilogTimings;
 
 namespace Services
 {
     public class StocksService : IStocksService
     {
-        //private readonly List<BuyOrder> _orders;
-        //private readonly List<SellOrder> _sellOrders;
         private readonly IStocksRepository _stocksRepository;
-
-        public StocksService(IStocksRepository stocksRepository)
+        private readonly ILogger<StocksService> _logger;
+        private readonly IDiagnosticContext _diagnosticContext; //to read data in the log
+        public StocksService(IStocksRepository stocksRepository, ILogger<StocksService> logger, IDiagnosticContext diagnosticContext)
         {
-            //_orders = new List<BuyOrder>();
-            //_sellOrders = new List<SellOrder>();
             _stocksRepository = stocksRepository;
+            _logger = logger;
+            _diagnosticContext = diagnosticContext;
         }
 
         public async Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? request)
@@ -40,7 +43,10 @@ namespace Services
             await _stocksRepository.CreateBuyOrder(buy_order); //calling repository method
 
             //BuyOrderResponse order_response = buy_order.ToBuyOrderResponse();
-            
+
+            _diagnosticContext.Set("Buy Order", buy_order);
+
+
             return buy_order.ToBuyOrderResponse();
         }
 
@@ -77,13 +83,25 @@ namespace Services
 
         public async Task<List<BuyOrderResponse>> GetBuyOrders()
         {
+            _logger.LogInformation("GetBuyOrders of StocksService");
+
+
             List<BuyOrder> orders_from_db =  await _stocksRepository.GetBuyOrders();
             return orders_from_db.Select(buyOrders => buyOrders.ToBuyOrderResponse()).ToList();
         }
 
         public async Task<List<SellOrderResponse>> GetSellOrders()
         {
-            List<SellOrder> orders_from_db = await _stocksRepository.GetSellOrders();
+
+
+            _logger.LogInformation("GetSellOrders of StocksService");
+
+            List<SellOrder> orders_from_db;
+            using (Operation.Time("Time for Retrieving GetSellOrders from database"))
+            {
+                orders_from_db = await _stocksRepository.GetSellOrders();
+            }
+
             return orders_from_db.Select(sellOrder => sellOrder.ToSellOrderResponse()).ToList();
         }
     }
