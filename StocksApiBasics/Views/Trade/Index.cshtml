@@ -28,7 +28,14 @@
                     <input type="hidden" name="StockName" value="@Model.StockName" />
                     <input id="updated" class="stock-price" type="hidden" name="Price" value="@Model.Price" />
                 </form>
-                <span class="text-red" asp-validation-for="Quantity"></span>
+                <span class="text-red" asp-validation-for="Quantity"></span> @*Client side validation*@
+                @if (ViewBag.Errors != null) @*Server side validation*@
+                {
+                    @foreach (string error in ViewBag.Errors)
+                    {
+                        <span class="text-red">@error</span>
+                    }
+                }
             </div>
 
         </form>
@@ -38,14 +45,14 @@
 
     <div>
 
-        @if (ViewBag.Errors != null)
+@*        @if (ViewBag.Errors != null)
         {
             @foreach (string error in ViewBag.Errors)
             {
                 <p>@error</p>
             }
         }
-    </div>
+*@    </div>
 
 
 </body>

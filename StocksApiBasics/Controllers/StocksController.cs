@@ -15,9 +15,9 @@ namespace StocksApiBasics.Controllers
         private readonly IFinnhubService _finnhubService;
         private readonly IConfiguration _configuration;
         private readonly IMemoryCache _cache;
-        private readonly ILogger _logger;
+        private readonly ILogger<StocksController> _logger;
 
-        public StocksController(IFinnhubService finnhubService, IConfiguration configuration, IMemoryCache cache, ILogger logger)
+        public StocksController(IFinnhubService finnhubService, IConfiguration configuration, IMemoryCache cache, ILogger<StocksController> logger)
         {
             _configuration = configuration;
             _finnhubService = finnhubService;

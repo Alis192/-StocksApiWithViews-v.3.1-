@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Globalization;
 using ServiceContracts.DTO;
 using Rotativa.AspNetCore;
+using StocksApiBasics.Filters.ActionFilters;
 
 namespace StocksApiBasics.Controllers
 {
@@ -67,13 +68,14 @@ namespace StocksApiBasics.Controllers
 
         [HttpPost]
         [Route("Buyorder")]
+        [TypeFilter(typeof(BuyAndSellOrderErrorValidating))]
         public async Task<IActionResult> BuyOrder(BuyOrderRequest order)
         {
-            if(!ModelState.IsValid)
-            {
-                TempData["errors"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-                return RedirectToAction("Index", "Home", ViewBag.Errors);
-            }
+            //if(!ModelState.IsValid)
+            //{
+            //    TempData["errors"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            //    return RedirectToAction("Index", "Home", ViewBag.Errors);
+            //}
 
             await _stocksService.CreateBuyOrder(order);
 
@@ -82,13 +84,14 @@ namespace StocksApiBasics.Controllers
 
         [HttpPost]
         [Route("Sellorder")]
+        [TypeFilter(typeof(BuyAndSellOrderErrorValidating))]
         public async Task<IActionResult> SellOrder(SellOrderRequest order)
         {
-            if (!ModelState.IsValid)
-            {
-                TempData["errors"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-                return RedirectToAction("Index", "Home", ViewBag.Errors);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    TempData["errors"] = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            //    return RedirectToAction("Index", "Home", ViewBag.Errors);
+            //}
 
             await _stocksService.CreateSellOrder(order);
 
