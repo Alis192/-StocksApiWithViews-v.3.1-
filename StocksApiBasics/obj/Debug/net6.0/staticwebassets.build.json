@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Booe30jJhaUwH4OYrFQ9DLLSBR7RVr07PpexA1GWRfU=",
+  "Hash": "q5N5YzyrHAHO/gp8UU5mWiwosg8RkbPabfbe/PDeIs8=",
   "Source": "StocksApiBasics",
   "BasePath": "_content/StocksApiBasics",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ExploreViewStyle.css"
+    },
+    {
+      "Identity": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\StocksApiBasics\\wwwroot\\error.svg",
+      "SourceId": "StocksApiBasics",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\StocksApiBasics\\wwwroot\\",
+      "BasePath": "_content/StocksApiBasics",
+      "RelativePath": "error.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\error.svg"
     },
     {
       "Identity": "C:\\Users\\alido\\source\\ASP\\StocksApiBasics\\StocksApiBasics\\wwwroot\\Rotativa\\wkhtmltopdf.exe",

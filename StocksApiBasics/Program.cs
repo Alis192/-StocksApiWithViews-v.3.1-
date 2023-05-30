@@ -7,7 +7,7 @@ using Entities;
 using RepositoryContracts;
 using Repositories;
 using Serilog;
-
+using StocksApiBasics.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,10 +46,20 @@ builder.Services.AddDbContext<OrdersDbContext>(options =>
 
 var app = builder.Build();
 
+if (builder.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+} 
+else
+{
+    app.UseExceptionHandler("/Error"); //built in exception handler middleware
+    app.UseExceptionHandlingMiddleware(); //custom exception handler middleware
+}
+
 app.UseSerilogRequestLogging(); //it adds an extra log message as soon as the request response is completed 
 
 
-if (builder.Environment.IsEnvironment("Test") == false)
+if (builder.Environment.IsEnvironment("Test") == false) //other than Test environment we enable this package to export buy and sell orders into pdf
 {
     Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa"); //set up rotativa package
 }

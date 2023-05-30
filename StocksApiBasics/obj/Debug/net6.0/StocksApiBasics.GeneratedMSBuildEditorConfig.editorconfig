@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\alido\source\ASP\StocksApiBasics\StocksApiBasics
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/alido/source/ASP/StocksApiBasics/StocksApiBasics/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/alido/source/ASP/StocksApiBasics/StocksApiBasics/Views/Shared/Components/Grid/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcR3JpZFxEZWZhdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
