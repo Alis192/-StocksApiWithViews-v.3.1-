@@ -463,3 +463,15 @@ C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Fizzler.dll
 C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Fizzler.Systems.HtmlAgilityPack.dll
 C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\HtmlAgilityPack.dll
 C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\System.Xml.XPath.XmlDocument.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.AspNetCore.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\Serilog.Sinks.Seq.dll
+C:\Users\alido\source\ASP\StocksApiBasics\UnitTest\bin\Debug\net6.0\SerilogTimings.dll

@@ -16,7 +16,8 @@ namespace UnitTest
 {
     public class BuyAndSellTest
     {
-        private readonly IStocksService _stocksService;
+        private readonly IStocksGetterService _stocksGetterService;
+        private readonly IStocksCreaterService _stocksCreaterService;
         private readonly ITestOutputHelper _testOutputHelper;
         private readonly IFixture _fixture;
         private readonly IStocksRepository _stocksRepository; //defines mocked methods 
@@ -26,14 +27,16 @@ namespace UnitTest
         public BuyAndSellTest(ITestOutputHelper testOutputHelper)
         {
             var diagnosticConextMock = new Mock<IDiagnosticContext>();
-            var loggerMock = new Mock<ILogger<StocksService>>();
+            var loggerMock = new Mock<ILogger<StocksCreaterService>>();
+
 
             _testOutputHelper = testOutputHelper;
             _fixture = new Fixture();
             _stocksRepositoryMock = new Mock<IStocksRepository>(); 
             _stocksRepository = _stocksRepositoryMock.Object; //we are creating fake repository object
 
-            _stocksService = new StocksService(_stocksRepository, loggerMock.Object, diagnosticConextMock.Object);
+            _stocksGetterService = new StocksGetterService(_stocksRepository, loggerMock.Object, diagnosticConextMock.Object);
+            _stocksCreaterService = new StocksCreaterService(_stocksRepository, loggerMock.Object, diagnosticConextMock.Object);
         }
 
         #region CreateBuyOrder
@@ -49,7 +52,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentNullException>();
@@ -67,7 +70,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -85,7 +88,7 @@ namespace UnitTest
             // Act and Assert
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -104,7 +107,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -121,7 +124,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -137,7 +140,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -152,7 +155,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateBuyOrder(order_request);
+                await _stocksCreaterService.CreateBuyOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -170,7 +173,7 @@ namespace UnitTest
 
             _stocksRepositoryMock.Setup(temp => temp.CreateBuyOrder(It.IsAny<BuyOrder>())).ReturnsAsync(buy_order);
 
-            BuyOrderResponse order_from_create = await _stocksService.CreateBuyOrder(order_request);
+            BuyOrderResponse order_from_create = await _stocksCreaterService.CreateBuyOrder(order_request);
             buy_order_expected.BuyOrderID = order_from_create.BuyOrderID;
 
             //we check newly created Guid if it is created
@@ -187,7 +190,7 @@ namespace UnitTest
 
             _stocksRepositoryMock.Setup(temp => temp.GetBuyOrders()).ReturnsAsync(orders);
 
-            List<BuyOrderResponse> empty_list = await _stocksService.GetBuyOrders();
+            List<BuyOrderResponse> empty_list = await _stocksGetterService.GetBuyOrders();
 
             empty_list.Should().BeNullOrEmpty();
 
@@ -207,7 +210,7 @@ namespace UnitTest
             //Assert
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentNullException>();
@@ -226,7 +229,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -244,7 +247,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -262,7 +265,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -279,7 +282,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -296,7 +299,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -314,7 +317,7 @@ namespace UnitTest
 
             var action = async () =>
             {
-                await _stocksService.CreateSellOrder(order_request);
+                await _stocksCreaterService.CreateSellOrder(order_request);
             };
 
             await action.Should().ThrowAsync<ArgumentException>();
@@ -332,7 +335,7 @@ namespace UnitTest
 
             _stocksRepositoryMock.Setup(temp => temp.CreateSellOrder(It.IsAny<SellOrder>())).ReturnsAsync(sell_order);
 
-            SellOrderResponse order_from_create = await _stocksService.CreateSellOrder(order_request);
+            SellOrderResponse order_from_create = await _stocksCreaterService.CreateSellOrder(order_request);
             sell_order_expected.SellOrderID = order_from_create.SellOrderID;
 
             order_from_create.Should().NotBe(Guid.Empty);
@@ -350,7 +353,7 @@ namespace UnitTest
 
             _stocksRepositoryMock.Setup(temp => temp.GetSellOrders()).ReturnsAsync(orders);
 
-            List<SellOrderResponse> empty_list = await _stocksService.GetSellOrders();
+            List<SellOrderResponse> empty_list = await _stocksGetterService.GetSellOrders();
 
             empty_list.Should().BeEmpty();  
         }

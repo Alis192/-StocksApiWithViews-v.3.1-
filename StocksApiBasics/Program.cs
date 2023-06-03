@@ -8,6 +8,7 @@ using RepositoryContracts;
 using Repositories;
 using Serilog;
 using StocksApiBasics.Middleware;
+using StocksApiBasics.StartupExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,31 +19,8 @@ builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, 
     .ReadFrom.Services(services); //service collections are available to serilog
 }); //with this code we have succesfully enabled serilog
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IStocksRepository, StocksRepository>();
-builder.Services.AddScoped<IFinnhubRepository, FinnhubRepository>();
-builder.Services.Configure<StocksApiOptions>(builder.Configuration.GetSection("TradingOptions")); //we are adding configuration as a service with option type StocksApiOptions 
-builder.Services.AddScoped<IFinnhubService, FinnhubService>(); //initializing interface and class in IoC
-builder.Services.AddScoped<IStocksService, StocksService>();
-builder.Services.AddHttpClient(); //Now httpclient is available in our appliaction
-builder.Services.AddMemoryCache(); //adding caching
 
-
-var cultureInfo = new CultureInfo("en-US");
-cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
-
-CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
-
-builder.Services.AddDbContext<OrdersDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); //means that we are going to use sql server connection
-}, ServiceLifetime.Scoped);
-
-
-//CONNECTION STRING
-//Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=OrdersDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
-
+builder.Services.ConfigureServices(builder.Configuration);
 
 var app = builder.Build();
 

@@ -17,17 +17,18 @@ namespace StocksApiBasics.Controllers
         private readonly IFinnhubService _finnhubService;
         private readonly StocksApiOptions _options; //private field to create options method for StocksApiOptions.cs
         private readonly IConfiguration _config;
-        private readonly IStocksService _stocksService;
-
+        private readonly IStocksGetterService _stocksGetterService;
+        private readonly IStocksCreaterService _stocksCreaterService;
         
-        public TradeController(IFinnhubService finnhubService, IOptions<StocksApiOptions> stocksApiOptions, IConfiguration configuration, IStocksService stocksService) //so 'stocksApiOptions' parameter get an object if IOptions
+        public TradeController(IFinnhubService finnhubService, IOptions<StocksApiOptions> stocksApiOptions, IConfiguration configuration, IStocksGetterService stocksGetterService, IStocksCreaterService stocksCreaterService) //so 'stocksApiOptions' parameter get an object if IOptions
         {
             _finnhubService = finnhubService;
 
             _options = stocksApiOptions.Value; //and it has a predefined property called value which contains an object of stocksApiOptions class                                                    
             //stocksApiOptions is IOptions<> type, Value is 'StocksApiOptions' type
             _config= configuration; // we obtain user token 
-            _stocksService= stocksService; //creating service object
+            _stocksGetterService= stocksGetterService; //creating service object
+            _stocksCreaterService= stocksCreaterService;
         }
 
 
@@ -77,7 +78,7 @@ namespace StocksApiBasics.Controllers
             //    return RedirectToAction("Index", "Home", ViewBag.Errors);
             //}
 
-            await _stocksService.CreateBuyOrder(order);
+            await _stocksCreaterService.CreateBuyOrder(order);
 
             return RedirectToAction(nameof(Orders));
         }
@@ -93,7 +94,7 @@ namespace StocksApiBasics.Controllers
             //    return RedirectToAction("Index", "Home", ViewBag.Errors);
             //}
 
-            await _stocksService.CreateSellOrder(order);
+            await _stocksCreaterService.CreateSellOrder(order);
 
             return RedirectToAction(nameof(Orders));
         }
@@ -105,9 +106,9 @@ namespace StocksApiBasics.Controllers
         [Route("Orders")]
         public async Task<IActionResult> Orders()
         {
-            List<BuyOrderResponse> orders_from_list_buy = await _stocksService.GetBuyOrders();
+            List<BuyOrderResponse> orders_from_list_buy = await _stocksGetterService.GetBuyOrders();
 
-            List<SellOrderResponse> order_from_list_sell = await _stocksService.GetSellOrders();
+            List<SellOrderResponse> order_from_list_sell = await _stocksGetterService.GetSellOrders();
             
             Orders orders = new Orders();
             
@@ -121,8 +122,8 @@ namespace StocksApiBasics.Controllers
         [Route("OrdersPDF")]
         public async Task<IActionResult> OrdersPDF()
         {
-            List<BuyOrderResponse> buyOrders = await _stocksService.GetBuyOrders();
-            List<SellOrderResponse> sellOrders = await _stocksService.GetSellOrders();
+            List<BuyOrderResponse> buyOrders = await _stocksGetterService.GetBuyOrders();
+            List<SellOrderResponse> sellOrders = await _stocksGetterService.GetSellOrders();
 
             Orders order = new Orders();
             order.BuyOrders = buyOrders;
