@@ -1,0 +1,15 @@
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.AssemblyInfo.cs
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\bin\Debug\net6.0\StocksApplication.Infrastructure.deps.json
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\bin\Debug\net6.0\StocksApplication.Infrastructure.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\bin\Debug\net6.0\StocksApplication.Infrastructure.pdb
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\bin\Debug\net6.0\StocksApplication.Core.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\bin\Debug\net6.0\StocksApplication.Core.pdb
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.csproj.CopyComplete
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\refint\StocksApplication.Infrastructure.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\StocksApplication.Infrastructure.pdb
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication.Infrastructure\obj\Debug\net6.0\ref\StocksApplication.Infrastructure.dll

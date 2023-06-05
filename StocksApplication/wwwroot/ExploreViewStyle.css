@@ -1,0 +1,89 @@
+﻿.box-left {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.box-right {
+    flex: 2;
+    padding: 20px;
+    margin: 20px;
+}
+
+.sub-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.sub-box a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.company-name-explore {
+    font-weight: bold;
+}
+
+.company-info-explore {
+    color: #888;
+}
+
+.box-parent-explore {
+    display: flex;
+}
+
+.company-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.company-details img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.company-type {
+    display: inline-block;
+    background-color: #c9c9c9;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.company-exchange {
+    margin-top:10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.stock-price-explore {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #727e46;
+    margin-bottom: 10px;
+}
+
+
+.trade-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+}

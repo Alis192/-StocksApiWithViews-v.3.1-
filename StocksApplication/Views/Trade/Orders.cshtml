@@ -1,0 +1,119 @@
+﻿@model Orders
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="parent-container">
+    <a asp-action="OrdersPDF" asp-controller="Trade">Download as PDF</a>
+    <div class="child-container">
+        <div class="buy-orders">
+            <h2 class="title-orders">Buy Orders</h2>
+
+            <div class="order-container">
+                @foreach (var order in Model.BuyOrders)
+                {
+                    <div class="order-box">
+                        <div class="order-title">
+                            @order.StockName (@order.StockSymbol)
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label">Quantity:</span>
+                            <span class="field-value">@order.Quantity</span>
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label">Price:</span>
+                            <span class="field-value">$@order.Price</span>
+                        </div>
+                        <hr>
+                        <div class="order-field">
+                            <span class="field-label medium">Total Trade Amount:</span>
+                            <span class="price-value"><b>$@order.TradeAmount</b></span>
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label-date">@order.DateAndTimeOfOrder</span>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        <div class="sell-orders">
+            <h2 class="title-orders">Sell Orders</h2>
+            <div class="order-container">
+
+                @foreach (var order in Model.SellOrders)
+                {
+
+
+                    <div class="order-box">
+                        <div class="order-title">
+                            @order.StockName (@order.StockSymbol)
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label">Quantity:</span>
+                            <span class="field-value">@order.Quantity</span>
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label">Price:</span>
+                            <span class="field-value">$@order.Price</span>
+                        </div>
+                        <hr>
+                        <div class="order-field">
+                            <span class="field-label medium">Total Trade Amount:</span>
+                            <span class="price-value"><b>$@order.TradeAmount</b></span>
+                        </div>
+                        <div class="order-field">
+                            <span class="field-label-date">@order.DateAndTimeOfOrder</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@*
+<div class="container">
+
+    <div class="">
+        @foreach (var order in Model.BuyOrders)
+        {
+            <div class="box">
+                BUY ORDERS
+                <h3>@order.Price</h3>
+                <h2>@order.StockName</h2>
+                <h1>@order.StockSymbol</h1>
+                <p>@order.Quantity</p>
+                <p>@order.TradeAmount</p>
+            </div>
+        }
+
+    </div>
+
+
+    <div>
+        @foreach (var order in Model.SellOrders)
+        {
+            <div class="box">
+                SELL ORDERS
+                <h3>@order.Price</h3>
+                <h2>@order.StockName</h2>
+                <h1>@order.StockSymbol</h1>
+                <p>@order.Quantity</p>
+                <p>@order.TradeAmount</p>
+            </div>
+        }
+    </div>
+*@
+

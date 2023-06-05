@@ -1,0 +1,23 @@
+﻿@model Stock
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="~/ExploreViewStyle.css" rel="stylesheet" />
+</head>
+
+
+
+<div class="company-details">
+    <img src="@Model.CompanyLogo" alt="Company Logo">
+    <div>
+        <div class="company-name">@Model.StockName</div>
+        <div class="company-symbol">@Model.StockSymbol</div>
+    </div>
+</div>
+
+<div class="company-type">@Model.StockType</div>
+<div class="company-exchange">@Model.StockExchange</div>
+<div class="stock-price-explore">$@Model.StockPrice</div>
+<a asp-controller="Trade" asp-action="Index" asp-route-stockSymbol="@Model.StockSymbol" class="trade-button">Trade Now</a>

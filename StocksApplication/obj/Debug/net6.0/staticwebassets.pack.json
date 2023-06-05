@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\ExploreViewStyle.css",
+      "PackagePath": "staticwebassets\\ExploreViewStyle.css"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\Scripts\\FinnHub.js",
+      "PackagePath": "staticwebassets\\Scripts\\FinnHub.js"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\Scripts\\JavaScript.js",
+      "PackagePath": "staticwebassets\\Scripts\\JavaScript.js"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\SecondStyle.css",
+      "PackagePath": "staticwebassets\\SecondStyle.css"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\StyleSheet.css",
+      "PackagePath": "staticwebassets\\StyleSheet.css"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\error.svg",
+      "PackagePath": "staticwebassets\\error.svg"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.StocksApplication.UI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.StocksApplication.UI.props",
+      "PackagePath": "build\\StocksApplication.UI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.StocksApplication.UI.props",
+      "PackagePath": "buildMultiTargeting\\StocksApplication.UI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.StocksApplication.UI.props",
+      "PackagePath": "buildTransitive\\StocksApplication.UI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
