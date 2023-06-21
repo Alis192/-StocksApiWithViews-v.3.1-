@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ExploreViewStyle.css"
     },
     {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\OrdersStyleSheet.css",
+      "PackagePath": "staticwebassets\\OrdersStyleSheet.css"
+    },
+    {
       "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
       "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\profile-icon-png-910.png",
+      "PackagePath": "staticwebassets\\profile-icon-png-910.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.StocksApplication.UI.Microsoft.AspNetCore.StaticWebAssets.props",

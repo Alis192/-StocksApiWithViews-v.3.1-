@@ -35,15 +35,15 @@ namespace StocksApplication.Infrastructure.Repositories
             return sellOrder;
         }
 
-        public async Task<List<BuyOrder>> GetBuyOrders()
+        public async Task<List<BuyOrder>> GetBuyOrders(Guid userId)
         {
-            List<BuyOrder> all_buy_orders = await _db.BuyOrders.ToListAsync();
+            List<BuyOrder> all_buy_orders = await _db.BuyOrders.Where(orders => orders.UserId == userId).ToListAsync();
             return all_buy_orders;
         }
 
-        public async Task<List<SellOrder>> GetSellOrders()
+        public async Task<List<SellOrder>> GetSellOrders(Guid userId)
         {
-            List<SellOrder> all_sell_orders = await _db.SellOrders.ToListAsync();
+            List<SellOrder> all_sell_orders = await _db.SellOrders.Where(orders => orders.UserId == userId).ToListAsync();
             return all_sell_orders;
         }
     }

@@ -11,6 +11,8 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using SerilogTimings;
 using StocksApplication.Core.Domain.RepositoryContracts;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Services
 {
@@ -19,11 +21,14 @@ namespace Services
         private readonly IStocksRepository _stocksRepository;
         private readonly ILogger<StocksCreaterService> _logger;
         private readonly IDiagnosticContext _diagnosticContext; //to read data in the log
-        public StocksCreaterService(IStocksRepository stocksRepository, ILogger<StocksCreaterService> logger, IDiagnosticContext diagnosticContext)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public StocksCreaterService(IStocksRepository stocksRepository, ILogger<StocksCreaterService> logger, IDiagnosticContext diagnosticContext, IHttpContextAccessor httpContextAccessor)
         {
             _stocksRepository = stocksRepository;
             _logger = logger;
             _diagnosticContext = diagnosticContext;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? request)
@@ -32,8 +37,11 @@ namespace Services
 
             ValidationHelpers.ModelValidation(request);
 
+            request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             BuyOrder buy_order = request.ToBuyOrder();
+
+
 
             buy_order.BuyOrderID = Guid.NewGuid();
 
@@ -55,6 +63,8 @@ namespace Services
 
             ValidationHelpers.ModelValidation(request);
 
+            request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            
             SellOrder order_from_request = request.ToSellOrder();
 
             order_from_request.SellOrderID = Guid.NewGuid();

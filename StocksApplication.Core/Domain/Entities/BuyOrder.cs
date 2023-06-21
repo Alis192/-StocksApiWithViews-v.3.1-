@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StocksApplication.Core.Domain.IdentityEntities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entities
@@ -20,6 +21,11 @@ namespace Entities
 
         [Range(0, 10000)]
         public double? Price { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }   
+
 
     }
 }

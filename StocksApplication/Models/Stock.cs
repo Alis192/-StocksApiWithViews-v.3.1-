@@ -8,6 +8,6 @@
         public string? CompanyLogo { get; set; }
         public string? StockType { get; set; }
         public string? StockExchange { get; set; }
-        public double? StockPrice { get; set; } = 210.3;
+        public double? StockPrice { get; set; }
     }
 }

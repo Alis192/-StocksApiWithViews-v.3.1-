@@ -26,6 +26,7 @@ namespace ServiceContracts.DTO
         [Range(1, 10000, ErrorMessage = "{0} should be between ${1} and ${2}")]
         public double? Price { get; set; }
 
+        public Guid UserId { get; set; }    
         
         public SellOrder ToSellOrder()
         {
@@ -35,7 +36,8 @@ namespace ServiceContracts.DTO
                 StockName = StockName,
                 Price = Price,
                 DateAndTimeOfOrder = DateAndTimeOfOrder,
-                Quantity = Quantity
+                Quantity = Quantity,
+                UserId= UserId
             };
         }
     }

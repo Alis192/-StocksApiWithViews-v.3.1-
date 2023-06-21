@@ -4,9 +4,17 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Stocks App</title>
-    <link href="~/StyleSheet.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @if (ViewBag.NoLayoutCss == null)
+    {
+        <link href="~/StyleSheet.css" rel="stylesheet" />
+    }
+    else
+    {
+        <link href="~/OrdersStyleSheet.css" rel="stylesheet" />
+
+    }
 </head>
 <body>
     <header>
@@ -17,14 +25,32 @@
                     <li><a asp-controller="Trade" asp-action="Index">Home</a></li>
                     <li><a asp-controller="Trade" asp-action="Orders">Order List</a></li>
                     <li><a asp-controller="Stocks" asp-action="Explore">Explore</a></li>
-                </ul> 
+                </ul>
             </div>
             <div class="nav-right">
-                <form class="search-form">
-                    <input type="text" placeholder="Search">
-                    <button type="submit">Search</button>
+                @*                <form class="search-form">
+                <input type="text" placeholder="Search">
+                <button type="submit">Search</button>
                 </form>
-                <a href="#" class="login-button">Login</a>
+
+                *@
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="account-dropdown">
+                        <div class="account-button"><i class="fa-solid fa-user-circle"></i></div>
+                        <div class="account-menu">
+                            <p class="username">@User.Identity?.Name</p>
+                            <hr class="separator">
+                            <a asp-controller="Account" asp-action="Logout" class="logout-button">Logout</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="login-button">Login</a>
+                }
+
             </div>
         </nav>
     </header>
@@ -35,5 +61,40 @@
 
     @RenderSection("scripts", required: false) @*reuqired: false means that these scripts are optional, in case some views doesn't require them then it will be ok'*@
 
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h3 class="logo"><i class="fa-solid fa-money-bill-trend-up"></i> StocksApp</h3>
+                <p>We are a team of dedicated individuals committed to providing the best stock trading platform for all your needs.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a asp-controller="Trade" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Trade" asp-action="Orders">Order List</a></li>
+                    <li><a asp-controller="Stocks" asp-action="Explore">Explore</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-envelope"></i> Email: alidov363@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> Phone: +994(55) 528 13 00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; StocksApp 2023, All Right Reserved
+        </div>
+    </footer>
+
+
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $(".account-button").click(function () {
+            $(".account-menu").toggle();
+        });
+    });
+
+</script>

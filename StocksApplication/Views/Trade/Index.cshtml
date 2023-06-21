@@ -39,27 +39,32 @@
             </div>
 
         </form>
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+            <div id="myChart"></div>
+        </div>
 
     </main>
 
 
     <div>
 
-@*        @if (ViewBag.Errors != null)
+        @*        @if (ViewBag.Errors != null)
         {
-            @foreach (string error in ViewBag.Errors)
-            {
-                <p>@error</p>
-            }
+        @foreach (string error in ViewBag.Errors)
+        {
+        <p>@error</p>
         }
-*@    </div>
+        }
+        *@
+    </div>
 
 
 </body>
 
 @section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts-wrapper"></script>
     <script src="~/Scripts/FinnHub.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" asp-fallback-test="windows.jQuery" asp-fallback-src="~/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js" integrity="sha512-FOhq9HThdn7ltbK8abmGn60A/EMtEzIzv1rvuh+DqzJtSGq8BRdEN0U+j0iKEIffiw/yEtVuladk6rsG4X6Uqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/jquery.validate.unobtrusive" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

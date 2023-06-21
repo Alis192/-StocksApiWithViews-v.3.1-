@@ -13,8 +13,8 @@ namespace StocksApplication.Core.Domain.RepositoryContracts
 
         Task<SellOrder> CreateSellOrder(SellOrder sellOrder);
 
-        Task<List<BuyOrder>> GetBuyOrders();
+        Task<List<BuyOrder>> GetBuyOrders(Guid userId);
 
-        Task<List<SellOrder>> GetSellOrders();
+        Task<List<SellOrder>> GetSellOrders(Guid userId);
     }
 }

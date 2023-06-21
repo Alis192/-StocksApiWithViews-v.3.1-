@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dHCGin4HcLZq+9XjkVG0SOP0v9AcaSyYCqdCRUvdy+A=",
+  "Hash": "0BRjaLX+DutTeMZGqgjhZRFXkgTApYYkRZQ6pFGxQU4=",
   "Source": "StocksApplication.UI",
   "BasePath": "_content/StocksApplication.UI",
   "Mode": "Default",
@@ -66,6 +66,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\OrdersStyleSheet.css",
+      "SourceId": "StocksApplication.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\",
+      "BasePath": "_content/StocksApplication.UI",
+      "RelativePath": "OrdersStyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\OrdersStyleSheet.css"
+    },
+    {
+      "Identity": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\profile-icon-png-910.png",
+      "SourceId": "StocksApplication.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\",
+      "BasePath": "_content/StocksApplication.UI",
+      "RelativePath": "profile-icon-png-910.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\profile-icon-png-910.png"
     },
     {
       "Identity": "C:\\Users\\alido\\source\\ASP\\StocksApplication\\StocksApplication\\wwwroot\\Rotativa\\wkhtmltopdf.exe",

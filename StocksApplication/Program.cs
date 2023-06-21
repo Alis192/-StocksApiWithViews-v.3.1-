@@ -44,7 +44,13 @@ if (builder.Environment.IsEnvironment("Test") == false) //other than Test enviro
 app.UseHttpLogging();
 
 app.UseStaticFiles();
-app.UseRouting();
+
+app.UseRouting(); //Execute the filter pipeline (action + filter)
+
+app.UseAuthentication(); //Reading Identity cookie (Useful for extracting user information such as username from Cookie)
+
+app.UseAuthorization(); //Validates access permissions of the user
+
 app.MapControllers();   
 
 app.Run();

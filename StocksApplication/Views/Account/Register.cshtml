@@ -1,0 +1,132 @@
+﻿@model RegisterDTO
+
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+
+<div class="login-container">
+    <h2>Register</h2>
+    <form asp-controller="Account" asp-action="Register" method="post">
+        
+        @*Person Name*@
+        <div class="input-container">
+            <label asp-for="PersonName">Name:</label>
+            <input asp-for=PersonName />
+            <span class="error-message" asp-validation-for="PersonName" style="color:red;"></span>
+        </div>
+
+        @*Email*@
+        <div class="input-container">
+            <label asp-for="Email">Email:</label>
+            <input asp-for="Email" />
+            <span class="error-message" asp-validation-for="Email" style="color:red;"></span>
+
+        </div>
+
+        @*Phone*@
+        <div class="input-container">
+            <label asp-for="Phone">Phone:</label>
+            <input asp-for="Phone" />
+            <span class="error-message" asp-validation-for="Phone" style="color:red;"></span>
+
+        </div>
+
+        @*Password*@
+        <div class="input-container">
+            <label asp-for="Password">Password:</label>
+            <input asp-for="Password" />
+            <span class="error-message" asp-validation-for="Password" style="color:red;"></span>
+        </div>
+
+        @*ConfirmPassword*@
+        <div class="input-container">
+            <label asp-for="ConfirmPassword" style="color:red;">Confirm Password:</label>
+            <input class="error-message" asp-for="ConfirmPassword" />
+        </div>
+
+        @*Register*@
+        <div class="submit-container">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    <div class="register-prompt">
+        Already registered? <a asp-controller="Account" asp-action="Login">Sign in</a>
+    </div>
+</div>
+
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-container label {
+    margin-bottom: 5px;
+}
+
+.input-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-container {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.submit-container input {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-container input:hover {
+    background-color: #45a049;
+}
+
+.register-prompt {
+    text-align: center;
+}
+
+.register-prompt a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.register-prompt a:hover {
+    text-decoration: underline;
+}
+
+</style>

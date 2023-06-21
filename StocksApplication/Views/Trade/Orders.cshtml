@@ -4,116 +4,144 @@
     ViewBag.Title = "Orders";
 }
 
-<div class="parent-container">
-    <a asp-action="OrdersPDF" asp-controller="Trade">Download as PDF</a>
-    <div class="child-container">
-        <div class="buy-orders">
-            <h2 class="title-orders">Buy Orders</h2>
 
-            <div class="order-container">
-                @foreach (var order in Model.BuyOrders)
-                {
-                    <div class="order-box">
-                        <div class="order-title">
-                            @order.StockName (@order.StockSymbol)
-                        </div>
-                        <div class="order-field">
-                            <span class="field-label">Quantity:</span>
-                            <span class="field-value">@order.Quantity</span>
-                        </div>
-                        <div class="order-field">
-                            <span class="field-label">Price:</span>
-                            <span class="field-value">$@order.Price</span>
-                        </div>
-                        <hr>
-                        <div class="order-field">
-                            <span class="field-label medium">Total Trade Amount:</span>
-                            <span class="price-value"><b>$@order.TradeAmount</b></span>
-                        </div>
-                        <div class="order-field">
-                            <span class="field-label-date">@order.DateAndTimeOfOrder</span>
-                        </div>
-
+<div class="parent-box-container">
+    <a class="download-btn" asp-action="OrdersPDF" asp-controller="Trade">Download as PDF</a>
+    <div class="orders-wrapper">
+        <div class="order-column">
+            <h2 class="order-header buy-header">Buy Orders</h2>
+            @foreach (var order in Model.BuyOrders)
+            {
+                <div class="order-card">
+                    <h3 class="order-title">@order.StockSymbol</h3>
+                    <div class="order-content">
+                        <p><span class="order-label">Quantity:</span> <span class="order-quantity">@order.Quantity</span></p>
+                        <p><span class="order-label">Price:</span> <span class="order-price">$@order.Price</span></p>
+                        <hr class="order-divider">
+                        <p><span class="order-label">Total Trade Amount:</span> <span class="order-total">$@order.TradeAmount</span></p>
+                        <p class="order-date">@order.DateAndTimeOfOrder</p>
                     </div>
-                }
+                </div>
 
-            </div>
+            }
+            <!-- Add more order boxes as necessary -->
         </div>
-
-        <div class="sell-orders">
-            <h2 class="title-orders">Sell Orders</h2>
-            <div class="order-container">
-
-                @foreach (var order in Model.SellOrders)
-                {
-
-
-                    <div class="order-box">
-                        <div class="order-title">
-                            @order.StockName (@order.StockSymbol)
-                        </div>
-                        <div class="order-field">
-                            <span class="field-label">Quantity:</span>
-                            <span class="field-value">@order.Quantity</span>
-                        </div>
-                        <div class="order-field">
-                            <span class="field-label">Price:</span>
-                            <span class="field-value">$@order.Price</span>
-                        </div>
-                        <hr>
-                        <div class="order-field">
-                            <span class="field-label medium">Total Trade Amount:</span>
-                            <span class="price-value"><b>$@order.TradeAmount</b></span>
-                        </div>
-                        <div class="order-field">
-                            <span class="field-label-date">@order.DateAndTimeOfOrder</span>
-                        </div>
+        <div class="order-column">
+            <h2 class="order-header sell-header">Sell Orders</h2>
+            @foreach(var order in Model.SellOrders)
+            {
+                <div class="order-card">
+                    <h3 class="order-title">@order.StockSymbol</h3>
+                    <div class="order-content">
+                        <p><span class="order-label">Quantity:</span> <span class="order-quantity">@order.Quantity</span></p>
+                        <p><span class="order-label">Price:</span> <span class="order-price">$@order.Price</span></p>
+                        <hr class="order-divider">
+                        <p><span class="order-label">Total Trade Amount:</span> <span class="order-total">$@order.TradeAmount</span></p>
+                        <p class="order-date">@order.DateAndTimeOfOrder</p>
                     </div>
-                }
-            </div>
+                </div>
+            }
+            <!-- Add more order boxes as necessary -->
         </div>
-
     </div>
 </div>
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+    }
 
+    .parent-box-container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
+    .download-btn {
+        display: inline-block;
+        background: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 3px;
+        text-decoration: none;
+        margin-bottom: 30px;
+    }
 
+    .orders-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
 
+    .order-column {
+        flex: 1;
+        margin-right: 10px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
 
+    .order-header {
+        color: #fff;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 3px;
+    }
 
+    .buy-header {
+        background: #4b504b;
+    }
 
-@*
-<div class="container">
+    .sell-header {
+        background: #4b504b;
+    }
 
-    <div class="">
-        @foreach (var order in Model.BuyOrders)
-        {
-            <div class="box">
-                BUY ORDERS
-                <h3>@order.Price</h3>
-                <h2>@order.StockName</h2>
-                <h1>@order.StockSymbol</h1>
-                <p>@order.Quantity</p>
-                <p>@order.TradeAmount</p>
-            </div>
-        }
+    .order-card {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+    }
 
-    </div>
+    .order-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
+    .order-content {
+        font-size: 1.1rem;
+    }
 
-    <div>
-        @foreach (var order in Model.SellOrders)
-        {
-            <div class="box">
-                SELL ORDERS
-                <h3>@order.Price</h3>
-                <h2>@order.StockName</h2>
-                <h1>@order.StockSymbol</h1>
-                <p>@order.Quantity</p>
-                <p>@order.TradeAmount</p>
-            </div>
-        }
-    </div>
-*@
+    .order-label {
+        font-weight: bold;
+    }
 
+    .order-quantity, .order-price {
+        color: #666;
+    }
+
+    .order-total {
+        color: green;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .order-date {
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 5px;
+    }
+
+    .order-divider {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 10px 0;
+    }
+
+</style>

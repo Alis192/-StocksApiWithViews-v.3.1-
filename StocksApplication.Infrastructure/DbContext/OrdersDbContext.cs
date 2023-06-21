@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using StocksApplication.Core.Domain.IdentityEntities;
 
 namespace Entities
 {
-    public class OrdersDbContext : DbContext
+    public class OrdersDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid> //Defines predefined DbSets for Identity
     {
 
         public OrdersDbContext(DbContextOptions options) : base(options) //whatever options is supplied in program.cs it will be supplied to the constructor of DbContext class as options parameter

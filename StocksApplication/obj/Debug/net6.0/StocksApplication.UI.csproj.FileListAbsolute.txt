@@ -96,3 +96,8 @@ C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\S
 C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\StocksApplication.Core.pdb
 C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\StocksApplication.Infrastructure.pdb
 C:\Users\alido\source\ASP\StocksApplication\StocksApplication\obj\Debug\net6.0\StocksApplication.UI.csproj.CopyComplete
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

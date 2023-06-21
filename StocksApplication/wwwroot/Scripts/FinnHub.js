@@ -5,6 +5,37 @@ const stockPriceElem = document.getElementById("stock-price");
 
 let ws;
 
+// ApexCharts setup
+let options = {
+    chart: {
+        type: 'line',
+        height: 350,
+        animations: {
+            enabled: false
+        }
+    },
+    series: [
+        {
+            name: "Price",
+            data: []
+        }
+    ],
+    xaxis: {
+        type: 'datetime',
+    },
+    yaxis: {
+        opposite: true,
+        labels: {
+            formatter: function (value) {
+                return "$ " + value.toFixed(2);
+            }
+        }
+    }
+};
+
+let chart = new ApexCharts(document.querySelector("#myChart"), options);
+chart.render();
+
 function connectWebSocket() {
     ws = new WebSocket(socketUrl);
     ws.onopen = function () {
@@ -23,6 +54,11 @@ function connectWebSocket() {
             const stockPrice = message.data[0].p;
             stockPriceElem.innerText = stockPrice;
             document.getElementById("updated").value = stockPrice;
+
+            let date = new Date();
+            chart.appendData([{
+                data: [{ x: date, y: stockPrice }]
+            }]);
         }
     };
 }

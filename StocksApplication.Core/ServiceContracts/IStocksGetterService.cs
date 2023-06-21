@@ -8,5 +8,6 @@ namespace ServiceContracts
         Task<List<BuyOrderResponse>> GetBuyOrders();
 
         Task<List<SellOrderResponse>> GetSellOrders();
+
     }
 }

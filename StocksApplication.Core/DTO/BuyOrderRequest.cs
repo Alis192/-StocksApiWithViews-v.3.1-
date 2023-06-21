@@ -25,6 +25,7 @@ namespace ServiceContracts.DTO
         [Range(1, 10000, ErrorMessage = "{0} should be between ${1} and ${2}")]
         public double? Price { get; set; } 
 
+        public Guid UserId { get; set; }
 
         /// <summary>
         /// After inputting values of BuyOrderRequest we convert it BuyOrder class which acts like database Model 
@@ -38,7 +39,8 @@ namespace ServiceContracts.DTO
                 StockName = StockName,
                 Price = Price,
                 DateAndTimeOfOrder = DateAndTimeOfOrder,
-                Quantity = Quantity
+                Quantity = Quantity,
+                UserId = UserId
             };
         }
     }
