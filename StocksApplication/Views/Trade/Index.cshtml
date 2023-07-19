@@ -18,7 +18,7 @@
 
         <form asp-controller="Trade" asp-action="BuyOrder" class="form-field" method="post">
             <div class="new-order">
-                <h2>New Order</h2>
+                <h2>New Order</h2
                 <form>
                     <label asp-for="Quantity">Quantity:</label>
                     <input type="number" asp-for="Quantity" value="@Model.Quantity">
@@ -29,9 +29,10 @@
                     <input id="updated" class="stock-price" type="hidden" name="Price" value="@Model.Price" />
                 </form>
                 <span class="text-red" asp-validation-for="Quantity"></span> @*Client side validation*@
+                <span class="text-red">@ViewBag.BalanceError</span>
                 @if (ViewBag.Errors != null) @*Server side validation*@
                 {
-                    @foreach (string error in ViewBag.Errors)
+                    @foreach (var error in ViewBag.Errors)
                     {
                         <span class="text-red">@error</span>
                     }

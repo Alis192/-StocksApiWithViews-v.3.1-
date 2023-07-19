@@ -16,5 +16,7 @@ namespace StocksApplication.Core.Domain.IdentityEntities
         
         public virtual ICollection<SellOrder> SellOrders { get; set; }
 
+        public double Balance { get; set; }
+
     }
 }

@@ -13,6 +13,11 @@ using SerilogTimings;
 using StocksApplication.Core.Domain.RepositoryContracts;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using StocksApplication.Core.Helpers;
+using Microsoft.AspNetCore.Identity;
+using StocksApplication.Core.Domain.IdentityEntities;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using StocksApplication.Core.Domain.Exceptions;
 
 namespace Services
 {
@@ -22,13 +27,17 @@ namespace Services
         private readonly ILogger<StocksCreaterService> _logger;
         private readonly IDiagnosticContext _diagnosticContext; //to read data in the log
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserBalanceUpdate _userBalanceUpdate;
 
-        public StocksCreaterService(IStocksRepository stocksRepository, ILogger<StocksCreaterService> logger, IDiagnosticContext diagnosticContext, IHttpContextAccessor httpContextAccessor)
+        public StocksCreaterService(IStocksRepository stocksRepository, ILogger<StocksCreaterService> logger, IDiagnosticContext diagnosticContext, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager, IUserBalanceUpdate userBalanceUpdate)
         {
             _stocksRepository = stocksRepository;
             _logger = logger;
             _diagnosticContext = diagnosticContext;
             _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
+            _userBalanceUpdate = userBalanceUpdate;
         }
 
         public async Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? request)
@@ -39,8 +48,28 @@ namespace Services
 
             request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
+            //Retrieving user
+            ApplicationUser applicationUser = await _userManager.FindByIdAsync(request.UserId.ToString());
+
+            //If user not found
+            if (applicationUser == null)
+            {
+                throw new ArgumentException("User not found!");
+            }
+
             BuyOrder buy_order = request.ToBuyOrder();
 
+            double? totalAmount = TotalOrderPriceHelper.CalculateOrderPrice(buy_order);
+                
+            var chargedBalance = applicationUser.Balance - totalAmount;
+
+            if (chargedBalance < 0) //
+            {
+                throw new InsufficientBalanceException("Insufficient balance. Please top up your account and try again.");
+            } else
+            {
+                await _userBalanceUpdate.UpdateBalance(applicationUser, chargedBalance);
+            }
 
 
             buy_order.BuyOrderID = Guid.NewGuid();

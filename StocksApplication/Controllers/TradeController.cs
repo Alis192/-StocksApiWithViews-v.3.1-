@@ -8,6 +8,9 @@ using System.Globalization;
 using ServiceContracts.DTO;
 using Rotativa.AspNetCore;
 using StocksApiBasics.Filters.ActionFilters;
+using Microsoft.AspNetCore.Identity;
+using StocksApplication.Core.Domain.IdentityEntities;
+using StocksApplication.Core.Domain.Exceptions;
 
 namespace StocksApiBasics.Controllers
 {
@@ -62,8 +65,12 @@ namespace StocksApiBasics.Controllers
             }; 
 
             ViewBag.Errors = TempData["errors"]; //tempdata is used to pass errors from one controller method to another one
+            ViewBag.BalanceError = TempData["BalanceError"];
 
             ViewBag.FinnhubToken = _config["userToken"]; //sending userToken to the view because we use it in JS file to update prices 
+
+            //Retrieving user balance from database and display it in the View          
+            
             return View(stockTrade);
         }
 
@@ -78,7 +85,18 @@ namespace StocksApiBasics.Controllers
             //    return RedirectToAction("Index", "Home", ViewBag.Errors);
             //}
 
-            await _stocksCreaterService.CreateBuyOrder(order);
+            try
+            {
+                await _stocksCreaterService.CreateBuyOrder(order);
+            }
+            catch (InsufficientBalanceException ex)
+            {
+                TempData["BalanceError"] = ex.Message;
+                //ModelState.AddModelError("", ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+
+
 
             return RedirectToAction(nameof(Orders));
         }

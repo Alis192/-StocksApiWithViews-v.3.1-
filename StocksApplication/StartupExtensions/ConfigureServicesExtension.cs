@@ -10,6 +10,8 @@ using StocksApplication.Core.Domain.RepositoryContracts;
 using StocksApplication.Infrastructure.Repositories;
 using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
+using StocksApplication.Core.ServiceContracts;
+using StocksApplication.Core.Services;
 
 namespace StocksApiBasics.StartupExtensions
 {
@@ -25,6 +27,9 @@ namespace StocksApiBasics.StartupExtensions
             services.AddScoped<IFinnhubService, FinnhubService>(); //initializing interface and class in IoC
             services.AddScoped<IStocksGetterService, StocksGetterService>();
             services.AddScoped<IStocksCreaterService, StocksCreaterService>();
+            services.AddScoped<ITopUpService, TopUpService>();
+            services.AddScoped<ITopUpRepository, TopUpRepository>();
+            services.AddScoped<IUserBalanceUpdate, UserBalanceUpdate>();
             services.AddHttpContextAccessor();
 
             services.AddHttpClient(); //Now httpclient is available in our appliaction

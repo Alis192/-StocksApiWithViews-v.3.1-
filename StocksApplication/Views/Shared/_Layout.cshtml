@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.DependencyInjection
+@using StocksApplication.Core.Domain.IdentityEntities;
+@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -25,6 +30,7 @@
                     <li><a asp-controller="Trade" asp-action="Index">Home</a></li>
                     <li><a asp-controller="Trade" asp-action="Orders">Order List</a></li>
                     <li><a asp-controller="Stocks" asp-action="Explore">Explore</a></li>
+                    <li><a asp-controller="Balance" asp-action="Topup">Balance</a></li>
                 </ul>
             </div>
             <div class="nav-right">
@@ -37,6 +43,8 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
+                    <i class="fa-sharp fa-solid fa-coin-front"></i>
+                    <vc:balance></vc:balance>
                     <div class="account-dropdown">
                         <div class="account-button"><i class="fa-solid fa-user-circle"></i></div>
                         <div class="account-menu">

@@ -1,0 +1,112 @@
+﻿@model CardDTO
+
+<div class="topup-container">
+    <h2>Top Up Your Balance</h2>
+    <form method="post" asp-action="Topup" asp-controller="Balance">
+        <div class="form-control">
+            <label asp-for="CardNumber">Card Number</label>
+            <input asp-for="CardNumber" placeholder="1234 5678 9012 3456" required>
+            @*            <span asp-validation-for="CardNumber"></span>
+            *@
+        </div>
+        <div class="form-control grid-container">
+            <div>
+                <label asp-for="ExpirationMonth">Expiry Date</label>
+                <div class="grid-item">
+                    <input asp-for="ExpirationMonth" placeholder="MM" required>
+                    <span>/</span>
+                    <input asp-for="ExpirationYear" placeholder="YY" required>
+                    @*                    <span asp-validation-for="ExpirationYear"></span>
+                    *@
+                </div>
+            </div>
+            <div>
+                <label asp-for="Cvc">CVC</label>
+                <input asp-for="Cvc" placeholder="123" required>
+                @*                <span asp-validation-for="Cvc"></span>
+                *@
+            </div>
+        </div>
+        <div class="form-control">
+            <label asp-for="BalanceAmount">Amount to Add</label>
+            <input asp-for="BalanceAmount">
+            @*            <span asp-validation-for="BalanceAmount"></span>
+            *@
+        </div>
+        <div asp-validation-summary="All">
+        </div>
+        <button type="submit">Top Up</button>
+
+        @if (!string.IsNullOrEmpty(ViewBag.TransactionMessage))
+        {
+            <p class="success">@ViewBag.TransactionMessage</p>
+        }
+    </form>
+</div>
+
+
+<style>
+    .topup-container {
+        width: 50%;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .success {
+        color: green;
+        text-align: center;
+        font-weight: bold;
+        margin: 20px;
+    }
+
+    .topup-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    .form-control label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 10px;
+    }
+
+    .grid-item {
+        display: flex;
+        gap: 10px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
