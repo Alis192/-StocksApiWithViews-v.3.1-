@@ -38,6 +38,7 @@ namespace Services
             Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             List<BuyOrder> orders_from_db =  await _stocksRepository.GetBuyOrders(userId);
+
             return orders_from_db.Select(buyOrders => buyOrders.ToBuyOrderResponse()).ToList();
         }
 

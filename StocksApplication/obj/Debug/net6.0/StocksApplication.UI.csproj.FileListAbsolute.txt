@@ -101,3 +101,4 @@ C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\M
 C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\alido\source\ASP\StocksApplication\StocksApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

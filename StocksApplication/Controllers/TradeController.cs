@@ -67,6 +67,8 @@ namespace StocksApiBasics.Controllers
             ViewBag.Errors = TempData["errors"]; //tempdata is used to pass errors from one controller method to another one
             ViewBag.BalanceError = TempData["BalanceError"];
 
+            
+
             ViewBag.FinnhubToken = _config["userToken"]; //sending userToken to the view because we use it in JS file to update prices 
 
             //Retrieving user balance from database and display it in the View          

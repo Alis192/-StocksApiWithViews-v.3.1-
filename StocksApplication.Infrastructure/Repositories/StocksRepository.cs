@@ -46,5 +46,9 @@ namespace StocksApplication.Infrastructure.Repositories
             List<SellOrder> all_sell_orders = await _db.SellOrders.Where(orders => orders.UserId == userId).ToListAsync();
             return all_sell_orders;
         }
+
+
+
+
     }
 }

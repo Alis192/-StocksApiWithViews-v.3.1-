@@ -59,22 +59,11 @@ namespace Services
 
             BuyOrder buy_order = request.ToBuyOrder();
 
-            double? totalAmount = TotalOrderPriceHelper.CalculateOrderPrice(buy_order);
-                
-            var chargedBalance = applicationUser.Balance - totalAmount;
-
-            if (chargedBalance < 0) //
-            {
-                throw new InsufficientBalanceException("Insufficient balance. Please top up your account and try again.");
-            } else
-            {
-                await _userBalanceUpdate.UpdateBalance(applicationUser, chargedBalance);
-            }
-
+            await DecreaseBalance(buy_order, applicationUser);
 
             buy_order.BuyOrderID = Guid.NewGuid();
 
-            buy_order.DateAndTimeOfOrder= DateTime.Now;
+            buy_order.DateAndTimeOfOrder = DateTime.Now;
 
             await _stocksRepository.CreateBuyOrder(buy_order); //calling repository method
 
@@ -86,15 +75,29 @@ namespace Services
             return buy_order.ToBuyOrderResponse();
         }
 
-        public async Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? request)  
+        public async Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? request)
         {
             if (request == null) { throw new ArgumentNullException(); }
 
             ValidationHelpers.ModelValidation(request);
 
             request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            
+
+
+            //Retrieving user
+            ApplicationUser applicationUser = await _userManager.FindByIdAsync(request.UserId.ToString());
+
+            //If user not found
+            if (applicationUser == null)
+            {
+                throw new ArgumentException("User not found!");
+            }
+
+
+
             SellOrder order_from_request = request.ToSellOrder();
+
+            await IncreaseBalance(order_from_request, applicationUser);
 
             order_from_request.SellOrderID = Guid.NewGuid();
 
@@ -110,13 +113,41 @@ namespace Services
                 throw;
             }
 
-            //_db.SellOrders.Add(order_from_request);
-            //await _db.SaveChangesAsync();
-
             //SellOrderResponse sell_order_response = order_from_request.ToSellOrderResponse();
 
             return order_from_request.ToSellOrderResponse();
 
+        }
+
+        /// <summary>
+        /// Reusuable method
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="user"></param>
+        private async Task DecreaseBalance(BuyOrder order, ApplicationUser user)
+        {
+            double? totalAmount = TotalOrderPriceHelper.CalculateOrderPriceBuyOrder(order);
+
+            var chargedBalance = user.Balance - totalAmount;
+
+            if (chargedBalance < 0) //
+            {
+                throw new InsufficientBalanceException("Insufficient balance. Please top up your account and try again.");
+            }
+            else
+            {
+                await _userBalanceUpdate.UpdateBalance(user, chargedBalance);
+            }
+
+        }
+
+        private async Task IncreaseBalance(SellOrder order, ApplicationUser user)
+        {
+            double? totalAmount = TotalOrderPriceHelper.CalculateOrderPriceSellOrder(order);
+
+            var chargedBalance = user.Balance + totalAmount;
+
+            await _userBalanceUpdate.UpdateBalance(user, chargedBalance);
         }
 
     }

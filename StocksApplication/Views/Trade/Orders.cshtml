@@ -7,9 +7,10 @@
 
 <div class="parent-box-container">
     <a class="download-btn" asp-action="OrdersPDF" asp-controller="Trade">Download as PDF</a>
+    <h1 class="orders-title">Your Bought Orders</h1>
     <div class="orders-wrapper">
-        <div class="order-column">
-            <h2 class="order-header buy-header">Buy Orders</h2>
+
+        <div class="order-cards-container">
             @foreach (var order in Model.BuyOrders)
             {
                 <div class="order-card">
@@ -21,127 +22,135 @@
                         <p><span class="order-label">Total Trade Amount:</span> <span class="order-total">$@order.TradeAmount</span></p>
                         <p class="order-date">@order.DateAndTimeOfOrder</p>
                     </div>
-                </div>
-
-            }
-            <!-- Add more order boxes as necessary -->
-        </div>
-        <div class="order-column">
-            <h2 class="order-header sell-header">Sell Orders</h2>
-            @foreach(var order in Model.SellOrders)
-            {
-                <div class="order-card">
-                    <h3 class="order-title">@order.StockSymbol</h3>
-                    <div class="order-content">
-                        <p><span class="order-label">Quantity:</span> <span class="order-quantity">@order.Quantity</span></p>
-                        <p><span class="order-label">Price:</span> <span class="order-price">$@order.Price</span></p>
-                        <hr class="order-divider">
-                        <p><span class="order-label">Total Trade Amount:</span> <span class="order-total">$@order.TradeAmount</span></p>
-                        <p class="order-date">@order.DateAndTimeOfOrder</p>
-                    </div>
+                    <a class="sell-button">Sell Order</a>
                 </div>
             }
-            <!-- Add more order boxes as necessary -->
         </div>
     </div>
 </div>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
-        line-height: 1.6;
+    .orders-title {
+        text-align: center;
+        font-size: 2em;
+        color: white;
+        background: #496476;
+        padding: 20px;
+        font-weight: bold;
     }
 
     .parent-box-container {
-        max-width: 1300px;
+        max-width: 1600px;
         margin: 0 auto;
         padding: 20px;
     }
 
     .download-btn {
         display: inline-block;
-        background: #333;
-        color: #fff;
         padding: 10px 20px;
-        border-radius: 3px;
+        background-color: #3498db;
+        color: #fff;
         text-decoration: none;
-        margin-bottom: 30px;
+        border-radius: 5px;
+        font-size: 1em;
+        margin-bottom: 20px;
     }
 
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+
     .orders-wrapper {
-        display: flex;
-        justify-content: space-between;
+        background-color: #ecf0f1;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .order-column {
-        flex: 1;
-        margin-right: 10px;
-        background: #fff;
-        border-radius: 5px;
-        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .order-header {
-        color: #fff;
-        font-size: 1.4rem;
-        margin-bottom: 20px;
-        text-align: center;
-        padding: 10px;
-        border-radius: 3px;
-    }
-
-    .buy-header {
-        background: #4b504b;
-    }
-
-    .sell-header {
-        background: #4b504b;
+    .order-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        justify-items: center;
     }
 
     .order-card {
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%;
+        max-width: 300px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        box-sizing: border-box;
     }
 
     .order-title {
-        font-size: 1.2rem;
-        font-weight: bold;
+        font-size: 1.5em;
         margin-bottom: 10px;
+        color: #e74c3c;
     }
 
     .order-content {
-        font-size: 1.1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .order-content p {
+            margin: 5px 0;
+        }
+
+    .order-divider {
+        margin: 10px 0;
+        border: 1px solid #ccc;
     }
 
     .order-label {
         font-weight: bold;
+        color: #3498db;
     }
 
-    .order-quantity, .order-price {
-        color: #666;
+    .order-quantity {
+        color: #2ecc71;
+    }
+
+    .order-price {
+        color: #e67e22;
     }
 
     .order-total {
-        color: green;
-        font-size: 1.3rem;
-        font-weight: bold;
+        color: #9b59b6;
     }
 
     .order-date {
-        font-size: 0.9rem;
-        color: #888;
-        margin-top: 5px;
+        font-style: italic;
+        color: #555;
     }
 
-    .order-divider {
+    .sell-button {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
         border: none;
-        border-top: 1px solid #ddd;
-        margin: 10px 0;
+        background-color: #3498db;
+        color: #ffffff;
+        font-size: 1em;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        justify-content: center;
     }
+
+        .sell-button:hover {
+            background-color: #c0392b;
+        }
 
 </style>

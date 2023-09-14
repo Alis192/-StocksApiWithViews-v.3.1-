@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using StocksApiBasics.Controllers;
 using StocksApplication.Core.Domain.IdentityEntities;
 using StocksApplication.Core.DTO;
+using StocksApplication.Core.ServiceContracts;
+using StocksApplication.Core.Services;
 
 namespace StocksApplication.UI.Controllers
 {
@@ -14,7 +16,6 @@ namespace StocksApplication.UI.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager; //Will manipulate user accounts such as Create, Update, Delete and Searching
         private readonly SignInManager<ApplicationUser> _signInManager;
-
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
@@ -58,6 +59,7 @@ namespace StocksApplication.UI.Controllers
             {
                 //Sign in
                 await _signInManager.SignInAsync(user, isPersistent: false); //Will create a cookie and send to browser showing that the current user has signed in
+                
 
                 return RedirectToAction(nameof(TradeController.Index), "Trade");
             } 
@@ -98,6 +100,9 @@ namespace StocksApplication.UI.Controllers
             {
                 if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
                 {
+
+                    var user = await _userManager.FindByNameAsync(loginDTO.Email);
+    
                     return LocalRedirect(ReturnUrl);
                 }
                 return RedirectToAction(nameof(TradeController.Index), "Trade");

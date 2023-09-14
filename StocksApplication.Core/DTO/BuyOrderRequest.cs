@@ -11,6 +11,7 @@ namespace ServiceContracts.DTO
         public string? StockSymbol { get; set; }
 
 
+
         [Required(ErrorMessage = "Stock Name can't be blank")]
         public string? StockName { get; set; }
 
