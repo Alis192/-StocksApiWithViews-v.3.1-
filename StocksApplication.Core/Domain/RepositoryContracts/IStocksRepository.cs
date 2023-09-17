@@ -17,5 +17,8 @@ namespace StocksApplication.Core.Domain.RepositoryContracts
 
         Task<List<SellOrder>> GetSellOrders(Guid userId);
 
+        Task<BuyOrder?> GetSingleBuyOrder(Guid orderId);
+
+        Task DeleteAnOrder(Guid orderId);
     }
 }

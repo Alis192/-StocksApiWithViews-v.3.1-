@@ -7,6 +7,6 @@ namespace ServiceContracts
     {
         Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? request);
 
-        Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? request);
+        Task CreateSellOrder(Guid orderId);
     }
 }

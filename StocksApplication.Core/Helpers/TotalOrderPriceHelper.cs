@@ -13,10 +13,10 @@ namespace StocksApplication.Core.Helpers
             return total;
         }
 
-        internal static double? CalculateOrderPriceSellOrder(SellOrder _sellOrder)
-        {
-            double? total = _sellOrder.Price * _sellOrder.Quantity;
-            return total;
-        }
+        //internal static double? CalculateOrderPriceSellOrder(SellOrder _sellOrder)
+        //{
+        //    double? total = _sellOrder.Price * _sellOrder.Quantity;
+        //    return total;
+        //}
     }
 }

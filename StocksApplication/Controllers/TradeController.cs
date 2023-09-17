@@ -66,7 +66,7 @@ namespace StocksApiBasics.Controllers
 
             ViewBag.Errors = TempData["errors"]; //tempdata is used to pass errors from one controller method to another one
             ViewBag.BalanceError = TempData["BalanceError"];
-
+            ViewBag.EmptyBuyOrder = TempData["EmptyBuyOrder"];
             
 
             ViewBag.FinnhubToken = _config["userToken"]; //sending userToken to the view because we use it in JS file to update prices 
@@ -104,9 +104,9 @@ namespace StocksApiBasics.Controllers
         }
 
         [HttpPost]
-        [Route("Sellorder")]
-        [TypeFilter(typeof(BuyAndSellOrderErrorValidating))]
-        public async Task<IActionResult> SellOrder(SellOrderRequest order)
+        [Route("sellorder/{buyOrderId}")]
+        //[TypeFilter(typeof(BuyAndSellOrderErrorValidating))]
+        public async Task<IActionResult> SellOrder(Guid buyOrderId)
         {
             //if (!ModelState.IsValid)
             //{
@@ -114,7 +114,23 @@ namespace StocksApiBasics.Controllers
             //    return RedirectToAction("Index", "Home", ViewBag.Errors);
             //}
 
-            await _stocksCreaterService.CreateSellOrder(order);
+            
+
+            try
+            {
+                await _stocksCreaterService.CreateSellOrder(buyOrderId);
+            } 
+            catch(BuyOrderNotFoundException ex) 
+            {
+                TempData["EmptyBuyOrder"] = ex.Message;
+                //ModelState.AddModelError("", ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            
+
+            //await _stocksCreaterService.CreateSellOrder(orderId);
 
             return RedirectToAction(nameof(Orders));
         }

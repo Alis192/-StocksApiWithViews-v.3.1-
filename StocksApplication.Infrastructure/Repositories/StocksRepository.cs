@@ -35,6 +35,16 @@ namespace StocksApplication.Infrastructure.Repositories
             return sellOrder;
         }
 
+        public async Task DeleteAnOrder(Guid orderId)
+        {
+            BuyOrder? order = await _db.BuyOrders.SingleOrDefaultAsync(o => o.BuyOrderID == orderId);
+            if (order != null)
+            {
+                _db.BuyOrders.Remove(order);
+                await _db.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<BuyOrder>> GetBuyOrders(Guid userId)
         {
             List<BuyOrder> all_buy_orders = await _db.BuyOrders.Where(orders => orders.UserId == userId).ToListAsync();
@@ -47,8 +57,10 @@ namespace StocksApplication.Infrastructure.Repositories
             return all_sell_orders;
         }
 
-
-
-
+        public async Task<BuyOrder?> GetSingleBuyOrder(Guid orderId)
+        {
+            BuyOrder? buyOrder =  await _db.BuyOrders.Where(order => order.BuyOrderID.Equals(orderId)).SingleOrDefaultAsync();
+            return buyOrder;
+        }
     }
 }

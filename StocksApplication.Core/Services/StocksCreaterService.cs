@@ -75,17 +75,14 @@ namespace Services
             return buy_order.ToBuyOrderResponse();
         }
 
-        public async Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? request)
+        public async Task CreateSellOrder(Guid orderId)
         {
-            if (request == null) { throw new ArgumentNullException(); }
+            //if (orderId == null) { throw new ArgumentNullException(); }
 
-            ValidationHelpers.ModelValidation(request);
-
-            request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
+            BuyOrder? buyOrder = await _stocksRepository.GetSingleBuyOrder(orderId);
 
             //Retrieving user
-            ApplicationUser applicationUser = await _userManager.FindByIdAsync(request.UserId.ToString());
+            ApplicationUser applicationUser = await _userManager.FindByIdAsync(buyOrder.UserId.ToString());
 
             //If user not found
             if (applicationUser == null)
@@ -95,27 +92,45 @@ namespace Services
 
 
 
-            SellOrder order_from_request = request.ToSellOrder();
+            await IncreaseBalance(buyOrder, applicationUser);
+            await _stocksRepository.DeleteAnOrder(orderId);
 
-            await IncreaseBalance(order_from_request, applicationUser);
+            
 
-            order_from_request.SellOrderID = Guid.NewGuid();
 
-            order_from_request.DateAndTimeOfOrder = DateTime.Now;
+            //ValidationHelpers.ModelValidation(request);
 
-            try
-            {
-                await _stocksRepository.CreateSellOrder(order_from_request);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error adding SellOrder: {ex.Message}");
-                throw;
-            }
+            //request.UserId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            //SellOrderResponse sell_order_response = order_from_request.ToSellOrderResponse();
 
-            return order_from_request.ToSellOrderResponse();
+            ////Retrieving user
+            //ApplicationUser applicationUser = await _userManager.FindByIdAsync(request.UserId.ToString());
+
+
+
+
+
+            //SellOrder order_from_request = request.ToSellOrder();
+
+            //await IncreaseBalance(order_from_request, applicationUser);
+
+            //order_from_request.SellOrderID = Guid.NewGuid();
+
+            //order_from_request.DateAndTimeOfOrder = DateTime.Now;
+
+            //try
+            //{
+            //    await _stocksRepository.CreateSellOrder(order_from_request);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"Error adding SellOrder: {ex.Message}");
+            //    throw;
+            //}
+
+            ////SellOrderResponse sell_order_response = order_from_request.ToSellOrderResponse();
+
+            //return order_from_request.ToSellOrderResponse();
 
         }
 
@@ -141,9 +156,9 @@ namespace Services
 
         }
 
-        private async Task IncreaseBalance(SellOrder order, ApplicationUser user)
+        private async Task IncreaseBalance(BuyOrder order, ApplicationUser user)
         {
-            double? totalAmount = TotalOrderPriceHelper.CalculateOrderPriceSellOrder(order);
+            double? totalAmount = TotalOrderPriceHelper.CalculateOrderPriceBuyOrder(order);
 
             var chargedBalance = user.Balance + totalAmount;
 

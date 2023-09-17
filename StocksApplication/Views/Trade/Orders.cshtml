@@ -22,7 +22,9 @@
                         <p><span class="order-label">Total Trade Amount:</span> <span class="order-total">$@order.TradeAmount</span></p>
                         <p class="order-date">@order.DateAndTimeOfOrder</p>
                     </div>
-                    <a class="sell-button">Sell Order</a>
+                    <form asp-controller="Trade" asp-action="SellOrder" asp-route-buyOrderId="@order.BuyOrderID" method="post">
+                        <button type="submit" class="sell-button">Sell Order</button>
+                    </form>
                 </div>
             }
         </div>

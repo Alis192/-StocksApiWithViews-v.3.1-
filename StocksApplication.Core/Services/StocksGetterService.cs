@@ -56,5 +56,15 @@ namespace Services
 
             return orders_from_db.Select(sellOrder => sellOrder.ToSellOrderResponse()).ToList();
         }
+
+        //public async Task<BuyOrderResponse> GetSingleBuyOrder(Guid id)
+        //{
+        //    BuyOrder? buyOrder = await _stocksRepository.GetSingleBuyOrder(id);
+
+        //    return buyOrder == null ? throw new ArgumentNullException(nameof(buyOrder)) : buyOrder.ToBuyOrderResponse();
+
+
+
+        //}
     }
 }

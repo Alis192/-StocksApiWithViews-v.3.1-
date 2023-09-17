@@ -9,5 +9,7 @@ namespace ServiceContracts
 
         Task<List<SellOrderResponse>> GetSellOrders();
 
+        //Task<BuyOrderResponse> GetSingleBuyOrder(Guid id);
+
     }
 }
